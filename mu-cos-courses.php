@@ -43,7 +43,7 @@ function mu_cos_courses_shortcode( $atts ) {
 	$html = '<ul class="cos_courses divide-y divide-gray-200 divide-dotted mt-4">';
 	foreach ( $courses_json as $course ) {
 		$html .= '<li class="' . esc_attr( $course->Class ) . ' block py-4">';
-		$html .= '<div class="title font-semibold">' . esc_attr( $course->subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ) . '</div>';
+		$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ) . '</div>';
 		$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>';
 		$html .= '</li>';
 	}

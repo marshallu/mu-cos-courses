@@ -1,0 +1,10 @@
+ul.cos_courses { margin: 0; padding: 0 0 0 10px; }
+ul.cos_courses > li {}
+ul.cos_courses > li > * { margin: 2px 0; }
+ul.cos_courses > li > figure { margin-left: 10px; }
+ul.cos_courses > li.archive { display: none; }
+div.cos_courses_filters { border: solid 1px #d8d8d8; background-color: #f2f2f2; padding: 8px; }
+div.cos_courses_filters > span { margin: 0 12px; }
+div.cos_courses_filters label { display: inline; }
+div.cos_courses_filters input { display: inline; }
+div.cos_courses_filters > span > input[type=text] { width: 300px; border: solid 1px #d8d8d8 !important; }

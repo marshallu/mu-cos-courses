@@ -12,13 +12,13 @@ jQuery(function() {
 	$radio_current.click(updateFilters);
 	$radio_archive.click(updateFilters);
 	$container.append($search, $radio_current, $radio_archive);
-	jQuery('ul.cos_courses').first().before($container);
+	jQuery('div.cos_courses').first().before($container);
 });
 function updateFilters() {
 	// current vs archive
 	var courses_current = jQuery('#cos_courses_current').prop('checked');
-	jQuery('ul.cos_courses>li').show();
-	jQuery('ul.cos_courses>li.archive').each(function() {
+	jQuery('div.cos_courses>div').show();
+	jQuery('div.cos_courses>div.archive').each(function() {
 		if (courses_current) jQuery(this).hide();
 		else jQuery(this).show();
 	});
@@ -35,7 +35,7 @@ function updateFilters() {
 	var courses_terms = courses_param.split(' ')
 	for (i=0; i<courses_terms.length; i++) courses_needles.push(courses_terms[i]);
 	// search visible courses for needles
-	jQuery('ul.cos_courses>li:visible').each(function() {
+	jQuery('div.cos_courses>div:visible').each(function() {
 		courses_filter_match = true;
 		courses_filter_haystack = jQuery(this).text().toLowerCase();
 		for (i=0; i<courses_needles.length; i++) {

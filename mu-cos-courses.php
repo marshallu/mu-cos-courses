@@ -29,38 +29,45 @@ function mu_cos_courses_shortcode( $atts ) {
 
 	$dept_param = trim( strtoupper( $data['dept'] ) );
 
-	$api_url = 'https://netapps.marshall.edu/cosweb/courses/descriptions.php?dept=' . esc_attr( $data['dept'] );
+	$transient_name = 'mu-cos-courses-' . esc_attr( $dept_param );
 
-	$request = wp_remote_get( esc_url( $api_url ) );
+	if ( false === get_transient( $transient_name ) ) {
 
-	if ( is_wp_error( $request ) ) {
-		return $request->get_error_message();
+		$api_url = 'https://netapps.marshall.edu/cosweb/courses/descriptions.php?dept=' . esc_attr( $data['dept'] );
+
+		$request = wp_remote_get( esc_url( $api_url ) );
+
+		if ( is_wp_error( $request ) ) {
+			return $request->get_error_message();
+		}
+
+		$body         = wp_remote_retrieve_body( $request );
+		$courses_json = json_decode( $body );
+		set_transient( $transient_name, $courses_json, 3600 );
+	} else {
+		$courses_json = get_transient( $transient_name );
 	}
 
-	$body         = wp_remote_retrieve_body( $request );
-	$courses_json = json_decode( $body );
-
-	$html = '<div class="cos_courses divide-y divide-gray-200 divide-dotted mt-4 list-none">';
+	$html = '<div role="list" class="cos_courses divide-y divide-gray-200 divide-dotted mt-4 list-none">';
 	foreach ( $courses_json as $course ) {
 		if ( 'current' === $course->Class ) {
-			$html .= '<div class="' . esc_attr( $course->Class ) . ' block py-4 px-4">';
+			$html .= '<div role="listitem" class="' . esc_attr( $course->Class ) . ' block py-4 px-4">';
 			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ) . '</div>';
 			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>';
 			$html .= '</div>';
 		} else {
-			$html .= '<div class=" bg-gray-100 ' . esc_attr( $course->Class ) . ' block py-4 px-4 hidden">';
+			$html .= '<div role="listitem" class=" bg-gray-100 ' . esc_attr( $course->Class ) . ' block py-4 px-4 hidden">';
 			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title );
 			$html .= '<span class="ml-2 inline bg-gray-800 text-gray-200 font-bold px-2 py-1 rounded uppercase text-xs mt-4">Archived</span>';
 			$html .= '</div>';
 			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>';
 			$html .= '</div>';
 		}
-
 	}
 	$html .= '</div>';
 	return $html;
 }
-add_shortcode( 'mu_cos_courses_new', 'mu_cos_courses_shortcode' );
+add_shortcode( 'mu_cos_courses', 'mu_cos_courses_shortcode' );
 
 /**
  * Proper way to enqueue scripts and styles

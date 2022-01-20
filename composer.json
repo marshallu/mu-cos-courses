@@ -1,4 +1,7 @@
 {
+	"name": "marshallu/mu-cos-courses",
+	"description": "Shortcodes used to generate pricing info for COS printer posting.",
+	"type": "wordpress-plugin",
     "require": {
         "paulthewalton/acf-stubs": "^5.8",
         "paulthewalton/acf-pro-stubs": "5.8.9.1",

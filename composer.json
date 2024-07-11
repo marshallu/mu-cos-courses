@@ -1,0 +1,19 @@
+{
+	"name": "marshallu/mu-cos-courses",
+	"description": "Plugin for displaying College of Science courses.",
+	"keywords": ["wordpress", "plugin"],
+	"homepage": "https://github.com/marshallu/mu-cos-syllabi",
+	"license": "MIT",
+	"type": "wordpress-plugin",
+	"require-dev": {
+		"squizlabs/php_codesniffer": "@stable",
+		"wp-coding-standards/wpcs": "^3.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+		"php-stubs/acf-pro-stubs": "^6.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

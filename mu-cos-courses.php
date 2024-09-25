@@ -50,17 +50,17 @@ function mu_cos_courses_shortcode( $atts ) {
 
 	$html = '<div role="list" class="cos_courses divide-y divide-gray-200 divide-dotted mt-4 list-none">';
 	foreach ( $courses_json as $course ) {
-		if ( 'current' === $course->Class ) {
-			$html .= '<div role="listitem" class="' . esc_attr( $course->Class ) . ' block py-4 px-4">';
-			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ) . '</div>';
-			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>';
+		if ( 'current' === $course->Class ) { // phpcs:ignore
+			$html .= '<div role="listitem" class="' . esc_attr( $course->Class ) . ' block py-4 px-4">'; // phpcs:ignore
+			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ) . '</div>'; // phpcs:ignore
+			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>'; // phpcs:ignore
 			$html .= '</div>';
 		} else {
-			$html .= '<div role="listitem" class=" bg-gray-100 ' . esc_attr( $course->Class ) . ' block py-4 px-4 hidden">';
-			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title );
+			$html .= '<div role="listitem" class=" bg-gray-100 ' . esc_attr( $course->Class ) . ' block py-4 px-4">'; // phpcs:ignore
+			$html .= '<div class="title font-semibold">' . esc_attr( $course->Subject ) . ' ' . esc_attr( $course->Course ) . ' - ' . esc_attr( $course->Title ); // phpcs:ignore
 			$html .= '<span class="ml-2 inline bg-gray-800 text-gray-200 font-bold px-2 py-1 rounded uppercase text-xs mt-4">Archived</span>';
 			$html .= '</div>';
-			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>';
+			$html .= '<div class="mt-1 pl-4">' . esc_attr( $course->Description ) . '</div>'; // phpcs:ignore
 			$html .= '</div>';
 		}
 	}

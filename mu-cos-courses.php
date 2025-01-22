@@ -73,7 +73,6 @@ add_shortcode( 'mu_cos_courses', 'mu_cos_courses_shortcode' );
  * Proper way to enqueue scripts and styles
  */
 function mu_cos_courses_scripts() {
-	wp_enqueue_style( 'mu-cos-courses', plugin_dir_url( __FILE__ ) . 'css/mu-cos-courses.css', array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/mu-cos-courses.css' ), 'all' );
 	wp_enqueue_style( 'mu-cos-courses-original', plugin_dir_url( __FILE__ ) . 'css/styles.css', array(), filemtime( plugin_dir_path( __FILE__ ) . 'css/styles.css' ), 'all' );
 	wp_enqueue_script( 'mu-cos-courses-js', plugin_dir_url( __FILE__ ) . 'js/scripts.js', array( 'jquery' ), true, true );
 }
